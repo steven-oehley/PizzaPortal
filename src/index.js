@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.css';
 
 const pizzaData = [
   {
@@ -48,31 +49,52 @@ const pizzaData = [
 
 function App() {
   return (
-    <>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
-    </>
-  );
-}
-
-function Header() {
-  return <h1>Pizza Portal 🍕</h1>;
-}
-
-function Menu() {
-  return (
-    <div>
-      <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
     </div>
   );
 }
 
+function Header() {
+  return (
+    <header className="header">
+      <h1>Pizza Portal 🍕</h1>;
+    </header>
+  );
+}
+
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      {/* all pizza components the same */}
+    </main>
+  );
+}
+
 function Footer() {
-  return <p>We're open 24/7!</p>;
+  const currentTime = new Date().getHours();
+  const openHour = 12;
+  const closerHour = 22;
+  let openMesage = '';
+
+  if (currentTime >= openHour && currentTime <= closerHour) {
+    openMesage = 'We are open, come in!';
+  } else {
+    openMesage =
+      'We are kneading our dough, getting ready to fire up our ovens again for you soon!';
+  }
+
+  return (
+    <footer className="footer">
+      <p>{openMesage}</p>
+    </footer>
+  );
 }
 
 // pizza component at the moment is reusable but not flexible
