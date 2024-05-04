@@ -49,12 +49,30 @@ const pizzaData = [
 function App() {
   return (
     <>
-      <h1>Hello React!</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Header />
+      <Menu />
+      <Footer />
     </>
   );
+}
+
+function Header() {
+  return <h1>Pizza Portal 🍕</h1>;
+}
+
+function Menu() {
+  return (
+    <div>
+      <h2>Our Menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+}
+
+function Footer() {
+  return <p>We're open 24/7!</p>;
 }
 
 // pizza component at the moment is reusable but not flexible
