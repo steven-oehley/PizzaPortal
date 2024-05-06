@@ -69,10 +69,19 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      {/* all pizza components the same */}
+      {/* Rendering a list */}
+      <div className="pizzas">
+        {pizzaData.map((pizzaInfo) => (
+          <Pizza
+            imageSrc={pizzaInfo.photoName}
+            imageAlt={pizzaInfo.name}
+            ingredients={pizzaInfo.ingredients}
+            pizzaName={pizzaInfo.name}
+            price={pizzaInfo.price}
+          />
+        ))}
+      </div>
+      {/* pizza component different thanks to props! */}
     </main>
   );
 }
@@ -100,15 +109,17 @@ function Footer() {
 // pizza component at the moment is reusable but not flexible
 // data always the same
 
-function Pizza() {
+// now that props added the component is flexible
+function Pizza(props) {
   return (
-    <>
-      <h2>{pizzaData[0].name}</h2>
-      <p>{pizzaData[0].ingredients}</p>
-      <img src={pizzaData[0].photoName} alt="spinach pizza" />
-      {/* name: 'Pizza Salamino', ingredients: 'Tomato, mozarella, and pepperoni',
-      price: 15, photoName: 'pizzas/salamino.jpg', soldOut: true, */}
-    </>
+    <div className="pizza">
+      <img src={props.imageSrc} alt={props.imageAlt} />
+      <div>
+        <h3>{props.pizzaName}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+      </div>
+    </div>
   );
 }
 
