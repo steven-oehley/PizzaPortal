@@ -71,13 +71,22 @@ function Menu() {
       <h2>Our Menu</h2>
       {/* Rendering a list */}
       {/* Normally pass in object and deal with object in more specific component */}
-      {pizzaData.length > 0 && (
+      {/* conditional rendering with && */}
+      {/* {pizzaData.length > 0 && (
         <ul className="pizzas">
           {pizzaData.map((pizza) => (
             <Pizza pizzaObj={pizza} />
           ))}
         </ul>
-      )}
+      )} */}
+      {/* && is one option - ternary operator another */}
+      {pizzaData.length > 0 ? (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} />
+          ))}
+        </ul>
+      ) : null}
       {/* pizza component different thanks to props! */}
     </main>
   );
