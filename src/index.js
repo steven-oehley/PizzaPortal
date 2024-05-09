@@ -86,7 +86,9 @@ function Menu() {
             <Pizza pizzaObj={pizza} />
           ))}
         </ul>
-      ) : null}
+      ) : (
+        <p>Still working on our menu, come back soon for updates!</p>
+      )}
       {/* pizza component different thanks to props! */}
     </main>
   );
@@ -121,6 +123,13 @@ function Footer() {
 function Pizza(props) {
   // now receieve prop of an object, not specific items
   // prop is now the pizzaObj
+
+  // conditional rendering with mutiple returns eg
+  // render null if pizza is sold out
+
+  // early return for if pizza sold out
+  if (props.pizzaObj.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
