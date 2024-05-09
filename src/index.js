@@ -71,11 +71,13 @@ function Menu() {
       <h2>Our Menu</h2>
       {/* Rendering a list */}
       {/* Normally pass in object and deal with object in more specific component */}
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} />
-        ))}
-      </ul>
+      {pizzaData.length > 0 && (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} />
+          ))}
+        </ul>
+      )}
       {/* pizza component different thanks to props! */}
     </main>
   );
@@ -85,18 +87,20 @@ function Footer() {
   const currentTime = new Date().getHours();
   const openHour = 12;
   const closerHour = 22;
-  let openMesage = "";
+  const isOpen = currentTime >= openHour && currentTime <= closerHour;
 
-  if (currentTime >= openHour && currentTime <= closerHour) {
-    openMesage = "We are open, come in!";
-  } else {
-    openMesage =
-      "We are kneading our dough, getting ready to fire up our ovens again for you soon!";
-  }
+  // removed if block
 
   return (
     <footer className="footer">
-      <p>{openMesage}</p>
+      {isOpen && (
+        <div className="order">
+          <p>
+            We're open until {closerHour}:00. Come visit us or order online.
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
 }
