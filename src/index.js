@@ -1,48 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
   {
-    name: 'Focaccia',
-    ingredients: 'Bread with italian olive oil and rosemary',
+    name: "Focaccia",
+    ingredients: "Bread with italian olive oil and rosemary",
     price: 6,
-    photoName: 'pizzas/focaccia.jpg',
+    photoName: "pizzas/focaccia.jpg",
     soldOut: false,
   },
   {
-    name: 'Pizza Margherita',
-    ingredients: 'Tomato and mozarella',
+    name: "Pizza Margherita",
+    ingredients: "Tomato and mozarella",
     price: 10,
-    photoName: 'pizzas/margherita.jpg',
+    photoName: "pizzas/margherita.jpg",
     soldOut: false,
   },
   {
-    name: 'Pizza Spinaci',
-    ingredients: 'Tomato, mozarella, spinach, and ricotta cheese',
+    name: "Pizza Spinaci",
+    ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
     price: 12,
-    photoName: 'pizzas/spinaci.jpg',
+    photoName: "pizzas/spinaci.jpg",
     soldOut: false,
   },
   {
-    name: 'Pizza Funghi',
-    ingredients: 'Tomato, mozarella, mushrooms, and onion',
+    name: "Pizza Funghi",
+    ingredients: "Tomato, mozarella, mushrooms, and onion",
     price: 12,
-    photoName: 'pizzas/funghi.jpg',
+    photoName: "pizzas/funghi.jpg",
     soldOut: false,
   },
   {
-    name: 'Pizza Salamino',
-    ingredients: 'Tomato, mozarella, and pepperoni',
+    name: "Pizza Salamino",
+    ingredients: "Tomato, mozarella, and pepperoni",
     price: 15,
-    photoName: 'pizzas/salamino.jpg',
+    photoName: "pizzas/salamino.jpg",
     soldOut: true,
   },
   {
-    name: 'Pizza Prosciutto',
-    ingredients: 'Tomato, mozarella, ham, aragula, and burrata cheese',
+    name: "Pizza Prosciutto",
+    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
     price: 18,
-    photoName: 'pizzas/prosciutto.jpg',
+    photoName: "pizzas/prosciutto.jpg",
     soldOut: false,
   },
 ];
@@ -70,17 +70,12 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       {/* Rendering a list */}
-      <div className="pizzas">
-        {pizzaData.map((pizzaInfo) => (
-          <Pizza
-            imageSrc={pizzaInfo.photoName}
-            imageAlt={pizzaInfo.name}
-            ingredients={pizzaInfo.ingredients}
-            pizzaName={pizzaInfo.name}
-            price={pizzaInfo.price}
-          />
+      {/* Normally pass in object and deal with object in more specific component */}
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} />
         ))}
-      </div>
+      </ul>
       {/* pizza component different thanks to props! */}
     </main>
   );
@@ -90,13 +85,13 @@ function Footer() {
   const currentTime = new Date().getHours();
   const openHour = 12;
   const closerHour = 22;
-  let openMesage = '';
+  let openMesage = "";
 
   if (currentTime >= openHour && currentTime <= closerHour) {
-    openMesage = 'We are open, come in!';
+    openMesage = "We are open, come in!";
   } else {
     openMesage =
-      'We are kneading our dough, getting ready to fire up our ovens again for you soon!';
+      "We are kneading our dough, getting ready to fire up our ovens again for you soon!";
   }
 
   return (
@@ -111,19 +106,21 @@ function Footer() {
 
 // now that props added the component is flexible
 function Pizza(props) {
+  // now receieve prop of an object, not specific items
+  // prop is now the pizzaObj
   return (
-    <div className="pizza">
-      <img src={props.imageSrc} alt={props.imageAlt} />
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
       <div>
-        <h3>{props.pizzaName}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
