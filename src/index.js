@@ -60,7 +60,7 @@ function App() {
 function Header() {
   return (
     <header className="header">
-      <h1>Pizza Portal 🍕</h1>;
+      <h1>Pizza Portal 🍕</h1>;{/* comment to test git */}
     </header>
   );
 }
