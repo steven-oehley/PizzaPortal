@@ -60,7 +60,8 @@ function App() {
 function Header() {
   return (
     <header className="header">
-      <h1>Pizza Portal 🍕</h1>;{/* comment to test git */}
+      <h1>Pizza Portal 🍕</h1>
+      {/* comment to test git */}
     </header>
   );
 }
@@ -144,15 +145,19 @@ function Pizza(props) {
   // render null if pizza is sold out
 
   // early return for if pizza sold out
-  if (props.pizzaObj.soldOut) return null;
+  // if (props.pizzaObj.soldOut) return null;
 
   return (
-    <li className="pizza">
+    // conditionally render class
+    <li className={`pizza ${props.pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
       <div>
         <h3>{props.pizzaObj.name}</h3>
         <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <span>
+          {/* conditionally render text */}
+          {props.pizzaObj.soldOut ? "SOLD OUT" : props.pizzaObj.price}
+        </span>
       </div>
     </li>
   );
