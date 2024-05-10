@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
@@ -69,6 +69,7 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
+
       {/* Rendering a list */}
       {/* Normally pass in object and deal with object in more specific component */}
       {/* conditional rendering with && */}
@@ -81,11 +82,18 @@ function Menu() {
       )} */}
       {/* && is one option - ternary operator another */}
       {pizzaData.length > 0 ? (
-        <ul className="pizzas">
-          {pizzaData.map((pizza) => (
-            <Pizza pizzaObj={pizza} />
-          ))}
-        </ul>
+        // one parent element so need a react fragrment!
+        <>
+          <p>
+            Get Cheesy with It: Where Pizzas Sing and Tummies Dance – Voted the
+            Universe's Best Pizza (According to Our Moms)
+          </p>
+          <ul className="pizzas">
+            {pizzaData.map((pizza) => (
+              <Pizza pizzaObj={pizza} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>Still working on our menu, come back soon for updates!</p>
       )}
@@ -152,7 +160,7 @@ function Pizza(props) {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 );
